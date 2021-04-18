@@ -17,33 +17,42 @@ import java.util.Collections;
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
+@Table(name = "user", schema = "registration")
 public class User implements UserDetails {
 
     @Id
-    @SequenceGenerator(name = "student_sequence",
-            sequenceName = "student_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence"
-    )
+//    @SequenceGenerator(name = "student_sequence",
+//            sequenceName = "student_sequence",
+//            allocationSize = 1
+//    )
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+//            generator = "student_sequence"
+//    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column
+    private String firstName;
+    @Column
+    private String lastName;
+    @Column
     private String username;
-    private String email;
+    @Column
     private String password;
     @Enumerated(EnumType.STRING)
+    @Column
     private UserRole userRole;
+    @Column
     private Boolean locked;
+    @Column
     private Boolean enabled;
 
-    public User(String username, String email, String password,
-                UserRole userRole, Boolean locked, Boolean enabled) {
+    public User(String firstName, String lastName, String username, String password,
+                UserRole userRole) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.username = username;
-        this.email = email;
         this.password = password;
         this.userRole = userRole;
-        this.locked = locked;
-        this.enabled = enabled;
     }
 
     @Override

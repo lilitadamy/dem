@@ -1,5 +1,7 @@
-package com.example.demo.registration;
+package com.example.demo.controller;
 
+import com.example.demo.model.dto.UserDto;
+import com.example.demo.service.RegistrationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,8 +13,8 @@ public class RegistrationController {
     private RegistrationService registrationService;
 
     @PostMapping
-    public String register(@RequestBody RegistrationRequest request) {
-        return registrationService.register(request);
+    public String register(@RequestBody UserDto userDto) {
+        return registrationService.register(userDto);
     }
 
 }

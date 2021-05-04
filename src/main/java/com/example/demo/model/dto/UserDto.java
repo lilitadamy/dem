@@ -1,4 +1,4 @@
-package com.example.demo.registration;
+package com.example.demo.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -9,9 +9,11 @@ import lombok.ToString;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class RegistrationRequest {
+public class UserDto {
     private final String firstName;
     private final String lastName;
     private final String username;
     private final String password;
+    private final String role;
+
 }

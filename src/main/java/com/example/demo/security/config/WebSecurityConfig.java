@@ -1,6 +1,6 @@
 package com.example.demo.security.config;
 
-import com.example.demo.user.UserService;
+import com.example.demo.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,8 +38,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                 .antMatchers("/api/users/registration/**")
-                 .permitAll()
+                .antMatchers("/api/users/**").hasRole("MANAGER")
+                .antMatchers("/api/waiters/**").hasRole("WAITER")
+                .antMatchers("/").permitAll()
                 .anyRequest()
                 .authenticated().and()
                 .formLogin();

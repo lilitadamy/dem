@@ -1,5 +1,7 @@
-package com.example.demo.user;
+package com.example.demo.model.entity;
 
+import com.example.demo.model.role.UserRole;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,17 +19,10 @@ import java.util.Collections;
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
-@Table(name = "user", schema = "registration")
+//@Table(name = "user", schema = "registration")
 public class User implements UserDetails {
 
     @Id
-//    @SequenceGenerator(name = "student_sequence",
-//            sequenceName = "student_sequence",
-//            allocationSize = 1
-//    )
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-//            generator = "student_sequence"
-//    )
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
@@ -37,14 +32,11 @@ public class User implements UserDetails {
     @Column
     private String username;
     @Column
+    @JsonIgnore
     private String password;
     @Enumerated(EnumType.STRING)
     @Column
     private UserRole userRole;
-    @Column
-    private Boolean locked;
-    @Column
-    private Boolean enabled;
 
     public User(String firstName, String lastName, String username, String password,
                 UserRole userRole) {
@@ -78,7 +70,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return !locked;
+        return true;
     }
 
     @Override
@@ -88,6 +80,6 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return enabled;
+        return true;
     }
 }

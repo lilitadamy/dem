@@ -1,5 +1,7 @@
-package com.example.demo.user;
+package com.example.demo.service;
 
+import com.example.demo.model.entity.User;
+import com.example.demo.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,6 +16,7 @@ public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private final static String USER_NOT_FOUND_MSG = "user with the username is not found";
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
